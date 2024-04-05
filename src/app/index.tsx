@@ -59,6 +59,9 @@ export default function Home() {
 
       setName("")
       setTotal("")
+      
+      fetchGoals()
+
     } catch (error) {
       Alert.alert("Erro", "Não foi possível cadastrar.")
       console.log(error)
@@ -77,14 +80,14 @@ export default function Home() {
   async function fetchTransactions() {
     try {
       const response = useTransaction.findLatest()
-
+      
       setTransactions(
         response.map((item) => ({
           ...item,
           date: dayjs(item.created_at).format("DD/MM/YYYY [às] HH:mm"),
         }))
       )
-      
+
     } catch (error) {
       console.log(error)
     }
